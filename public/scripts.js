@@ -30,7 +30,7 @@ window.onload = async function main() {
     const data = await getData("http://localhost:8080/courses");
     
     //Populates Class List
-    for (var i = 0; i <data.courses.length; i ++){
+    for (let i = 0; i <data.courses.length; i ++){
         populateClass(data.courses[i]['course-name']);
     }
 }

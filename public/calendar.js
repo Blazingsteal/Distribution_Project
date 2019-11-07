@@ -35,7 +35,7 @@ function previous() {
     if (currentMonth === 0) {
         currentYear = currentYear - 1;
         currentMonth = 11;
-    } else if (currentMonth != 0) {
+    } else if (currentMonth !== 0) {
         currentMonth = currentMonth - 1;
     }
     createCalendar(currentMonth, currentYear);
@@ -49,15 +49,15 @@ function jump() {
 }
 
 function createCalendar(month, year) {
-    let startDay = (new Date(year, month)).getDay()
+    let startDay = (new Date(year, month)).getDay();
 
     //Sets monday as 0 instead of sunday
     let mondayFirstDay = (startDay === 0 ? 6 : startDay - 1);
 
-    let daysInMonth = (new Date(year, month + 1, 0)).getDate()
+    let daysInMonth = (new Date(year, month + 1, 0)).getDate();
 
     // The last day of the previous month when comparing to the current month.
-    let prevLastDay = (new Date(year, month, 0)).getDate()
+    let prevLastDay = (new Date(year, month, 0)).getDate();
 
     let calendar = document.getElementById("calendar");
     calendar.innerHTML = "";
@@ -72,7 +72,7 @@ function createCalendar(month, year) {
         // Days from previous month, after subtracting the first day of current month
         let prevMonthDays = prevLastDay - (mondayFirstDay - 1);
         for (let j = 0; j <= 6; j++) {
-            if (i == 0 && prevMonthDays !== prevLastDay + 1) {
+            if (i === 0 && prevMonthDays !== prevLastDay + 1) {
                 let dayCell = document.createElement("td");
                 let dayCellText = document.createTextNode(prevMonthDays);
                 dayCell.append(dayCellText);
