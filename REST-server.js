@@ -1,6 +1,7 @@
 const fs = require("fs");
 const express = require("express");
 const server = express();
+let args = process.argv.splice(2);
 
 //Use files in the public folder
 server.use(express.static('public'));
@@ -9,6 +10,7 @@ let rawdata = fs.readFileSync('db.json');
 let db = JSON.parse(rawdata);
 console.log(typeof(db.courses));
 console.log(db);
+
 
 async function writeToFile () {
     const json = JSON.stringify(db, null, 2);
@@ -53,4 +55,4 @@ server.post('/courses/:courseID', (req, res) =>{
         res.sendStatus(404);
     }
 });
-server.listen(8080);
+server.listen(args[0] || 8080);

@@ -20,8 +20,10 @@ class Deadline {
     }
 
 }
-
-const serverURL = "http://localhost:8080";
+let url = window.location.hostname;
+let port = window.location.port;
+let newServerURL = "http://" + url + ":" + port;
+// const serverURL = "http://localhost:8080";
 
 async function getData(url) {
     const response = await fetch(url);
@@ -42,7 +44,7 @@ async function postData(url, data) {
 
 window.onload = async function main() {
     try {
-        const data = await getData(serverURL + "/courses");
+        const data = await getData(newServerURL + "/courses");
 
         //Populates Class & Deadline Lists
         for (let i = 0; i < data.courses.length; i++) {
@@ -115,7 +117,7 @@ async function addDeadline() {
 
         //Sending new course to server
         try {
-            data = await postData(serverURL + "/courses/" + courseList.selectedIndex, d);
+            data = await postData(newServerURL + "/courses/" + courseList.selectedIndex, d);
         } catch (err) {
             console.log(err);
         }
@@ -140,7 +142,7 @@ async function addCourse() {
 
         //Sending new course to server
         try {
-            data = await postData(serverURL + "/courses/", c);
+            data = await postData(newServerURL + "/courses/", c);
         } catch (err) {
             console.log(err);
         }
