@@ -5,29 +5,31 @@ config:
       arrivalRate: 10
 scenarios:
   - name: "Simulating a client making 100 GET requests on a specific course"
-    weight: 25
+    weight: 30
     flow:
       - loop:
-        - get:
-            url: "/courses/4"
+          - get:
+              url: "/courses/2"
         count: 100
-  - name: "Simulation a client making 50 POST requests"
-    weight: 50
+  - name: "Simulation a client making 50 POST requests & GET requests on a specific course"
+    weight: 40
     flow:
       - loop:
-        - post:
-            url: "/courses/4"
-            json:
-              day: "24"
-              month: "12"
-              year: "2019"
-              courseName: "iOS Programming"
-              description: "this is a test"
+          - post:
+              url: "/courses/4"
+              json:
+                day: "24"
+                month: "12"
+                year: "2019"
+                courseName: "iOS Programming"
+                description: "this is a test"
+          - get:
+              url: "/courses/4"
         count: 50
-  - name: "Simulating a client making 50 GET requests on all courses"
-    weight: 25
+  - name: "Simulating a client making 100 GET requests on all courses"
+    weight: 30
     flow:
       - loop:
-        - get:
-            url: "/courses"
-        count: 50
+          - get:
+              url: "/courses"
+        count: 100
