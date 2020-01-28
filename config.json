@@ -1,0 +1,17 @@
+{
+  "sourcePort": 8080,
+  "targets": [
+    {
+      "host": "localhost",
+      "port": 8886
+    },
+    {
+      "host": "localhost",
+      "port": 8887
+    },
+    {
+      "host": "localhost",
+      "port": 8888
+    }
+  ]
+}
